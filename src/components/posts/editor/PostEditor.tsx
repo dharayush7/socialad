@@ -13,6 +13,8 @@ export default function PostEditor() {
   const { user } = useSession();
 
   const mutation = useSubmitPostMutation();
+  const firstName = user.displayName.split(" ")[0];
+  const useName = firstName.charAt(0).toUpperCase() + firstName.slice(1);
 
   const editor = useEditor({
     extensions: [
@@ -21,7 +23,7 @@ export default function PostEditor() {
         italic: false,
       }),
       Placeholder.configure({
-        placeholder: "What's crack-a-lackin'?",
+        placeholder: `What's on your mind, ${useName}?`,
       }),
     ],
   });
