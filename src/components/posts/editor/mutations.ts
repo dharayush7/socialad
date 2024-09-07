@@ -11,9 +11,7 @@ import { submitPost } from "./actions";
 
 export function useSubmitPostMutation() {
   const { toast } = useToast();
-
   const queryClient = useQueryClient();
-
   const { user } = useSession();
 
   const mutation = useMutation({
