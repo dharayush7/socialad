@@ -62,19 +62,44 @@ export async function POST(
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    await prisma.like.upsert({
-      where: {
-        userId_postId: {
+    const post = await prisma.post.findUnique({
+      where: { id: postId },
+      select: {
+        userId: true,
+      },
+    });
+
+    if (!post) {
+      return Response.json({ error: "Post not found" }, { status: 404 });
+    }
+
+    await prisma.$transaction([
+      prisma.like.upsert({
+        where: {
+          userId_postId: {
+            postId,
+            userId: loggedInUser.id,
+          },
+        },
+        create: {
           postId,
           userId: loggedInUser.id,
         },
-      },
-      create: {
-        postId,
-        userId: loggedInUser.id,
-      },
-      update: {},
-    });
+        update: {},
+      }),
+      ...(loggedInUser.id !== post.userId
+        ? [
+            prisma.notification.create({
+              data: {
+                issuerId: loggedInUser.id,
+                recipientId: post.userId,
+                type: "LIKE",
+                postId,
+              },
+            }),
+          ]
+        : []),
+    ]);
 
     return new Response();
   } catch (error) {
@@ -94,12 +119,33 @@ export async function DELETE(
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    await prisma.like.deleteMany({
-      where: {
-        postId,
-        userId: loggedInUser.id,
+    const post = await prisma.post.findUnique({
+      where: { id: postId },
+      select: {
+        userId: true,
       },
     });
+
+    if (!post) {
+      return Response.json({ error: "Post not found" }, { status: 404 });
+    }
+
+    await prisma.$transaction([
+      prisma.like.deleteMany({
+        where: {
+          postId,
+          userId: loggedInUser.id,
+        },
+      }),
+      prisma.notification.deleteMany({
+        where: {
+          issuerId: loggedInUser.id,
+          recipientId: post.userId,
+          type: "LIKE",
+          postId,
+        },
+      }),
+    ]);
 
     return new Response();
   } catch (error) {
