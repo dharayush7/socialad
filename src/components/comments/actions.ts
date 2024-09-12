@@ -34,6 +34,7 @@ export async function submitComment({
               issuerId: user.id,
               recipientId: post.userId,
               type: "COMMENT",
+              postId: post.id,
             },
           }),
         ]
