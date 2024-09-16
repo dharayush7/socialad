@@ -1,7 +1,8 @@
-
 # ScocialAd
+
 ## Description
-Welcome to our Social Media Website! This full-stack application allows users to connect, share content, and interact in a dynamic online environment. Built with the latest technologies, this platform offers features such as posting multimedia content, interacting through likes and comments, and engaging with real-time chat. 
+
+Welcome to our Social Media Website! This full-stack application allows users to connect, share content, and interact in a dynamic online environment. Built with the latest technologies, this platform offers features such as posting multimedia content, interacting through likes and comments, and engaging with real-time chat.
 
 ## Features
 
@@ -9,9 +10,9 @@ Welcome to our Social Media Website! This full-stack application allows users to
 - **Likes & Comments**: Interact with posts through likes and comments.
 - **Bookmarking**: Save your favorite posts for easy access later.
 - **User Following**: Follow other users to see their posts in your feed.
-- **Feeds**: 
-  - *All New Posts Feed*: View the latest posts from all users.
-  - *Following Feed*: See posts from users you follow.
+- **Feeds**:
+  - _All New Posts Feed_: View the latest posts from all users.
+  - _Following Feed_: See posts from users you follow.
 - **Hashtags**: Add and search for hashtags. Each hashtag has its own dedicated page.
 - **Post Page**: Every post has a dedicated page for detailed view and interaction.
 - **Bookmarked Posts Page**: Access all your bookmarked posts in one place.
@@ -20,9 +21,11 @@ Welcome to our Social Media Website! This full-stack application allows users to
 - **Live Messaging**: Chat with other users in real-time and create groups.
 - **Message Reactions & File Sharing**: React to messages and share files in conversations.
 - **Unread Message Count**: Track unread messages and notifications.
+
 ## Technologies Used
 
-- **Frontend**: 
+- **Frontend**:
+
   - [Next.js 15 RC](https://nextjs.org/) for server-side rendering and static site generation.
   - [React Query](https://react-query.tanstack.com/) for data fetching and caching.
   - [React Hook Form](https://react-hook-form.com/) for form handling.
@@ -32,6 +35,7 @@ Welcome to our Social Media Website! This full-stack application allows users to
   - [ShadCN](https://github.com/shadcn) for component library.
 
 - **Backend**:
+
   - [Prisma](https://www.prisma.io/) ORM for database interactions.
   - [PostgreSQL](https://www.postgresql.org/) for relational database management.
   - [Lucia Auth](https://github.com/lucia-auth/lucia) for authentication.
@@ -39,22 +43,23 @@ Welcome to our Social Media Website! This full-stack application allows users to
   - [UploadThing](https://www.uploadthing.com/) for file storage.
 
 - **Chat**:
+
   - [Stream Chat](https://getstream.io/chat/) for real-time messaging and chat functionalities.
 
 - **Post Editor**:
   - [Tiptap](https://tiptap.dev/) for rich-text editing.
 
-
 ## Installation
 
 1. **Clone the repository**:
+
    ```bash
-   git clone 
-   cd your-repo
+   git clone https://github.com/dharayush7/socialad
+   cd socialad
    ```
 
 2. **Install dependencies**:
-Note: install all dependencies with npm.
+   Note: install all dependencies with npm.
    ```bash
    npm install --legacy-peer-deps
    ```
@@ -98,7 +103,6 @@ Add followings
 
 **Save the Client Id and Seceret**
 
-
 4. **Set up environment variables**:
    Create a `.env` file in the root directory and configure the following environment variables:
 
@@ -120,13 +124,14 @@ Add followings
    #Google Auth
    GOOGLE_CLIENT_ID=your_google_client_id
    GOOGLE_CLIENT_SECRET=your_google_client_secret
-   
+
    #other
    NEXT_PUBLIC_BASE_URL="http://localhost:3000"
-   
+
    ```
 
 5. **Run database migrations**:
+
    ```bash
    npx prisma db push
    ```
@@ -136,10 +141,9 @@ Add followings
    npm run dev
    ```
 
-
 ## 🔗 Links
-[portfolio](https://www.ayushdhar.com/)
 
+[portfolio](https://www.ayushdhar.com/)
 
 ## Cron job:
 
@@ -148,8 +152,8 @@ For cleening the uploadthing storage there have a route
 
 In production it autometically maintain by vercel.
 
-But in development, call this endpoint with GET request using postman or thunderclient and in authorization select bearer and provide CRON_SECRET (which is write in .env file) as value. 
+But in development, call this endpoint with GET request using postman or thunderclient and in authorization select bearer and provide CRON_SECRET (which is write in .env file) as value.
+
 ## License
 
 [MIT]
-
